@@ -1,4 +1,4 @@
-// AggiungiAbbonamento.java
+
 package view;
 
 import javax.swing.*;
@@ -8,16 +8,16 @@ import presenter.AggiungiAbbonamentoPresenter;
 
 public class AggiungiAbbonamento extends javax.swing.JPanel {
 
-    private JTextField jTextField1;  // ID
-    private JTextField jTextField2;  // Tipo abbonamento
-    private JTextField jTextField3;  // Durata
+    private JTextField jTextField1;  
+    private JTextField jTextField2;  
+    private JTextField jTextField3;  
     private JButton jButton1;
 
-    private AggiungiAbbonamentoPresenter presenter;  // Presenter
+    private AggiungiAbbonamentoPresenter presenter;  
 
     public AggiungiAbbonamento() {
         initComponents();
-        presenter = new AggiungiAbbonamentoPresenter(this); // Collega il Presenter alla View
+        presenter = new AggiungiAbbonamentoPresenter(this); 
     }
 
     private void initComponents() {
@@ -39,7 +39,7 @@ public class AggiungiAbbonamento extends javax.swing.JPanel {
         jButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                presenter.onAggiungiButtonClicked();  // Gestisce il click del pulsante
+                presenter.onAggiungiButtonClicked();  
             }
         });
 
@@ -84,7 +84,7 @@ public class AggiungiAbbonamento extends javax.swing.JPanel {
         );
     }
 
-    // Metodi per la vista
+   
 
     public String getID() {
         return jTextField1.getText();

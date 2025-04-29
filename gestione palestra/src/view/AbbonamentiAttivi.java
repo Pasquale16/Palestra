@@ -6,15 +6,15 @@ import presenter.AbbonamentiAttiviPresenter;
 
 public class AbbonamentiAttivi extends javax.swing.JPanel {
 
-    private JTextField jTextField1;  // Campo di input per l'ID
-    private JTextArea jTextArea1;    // Area di testo per visualizzare gli abbonamenti
-    private JButton jButton1;        // Pulsante per caricare gli abbonamenti
+    private JTextField jTextField1;  
+    private JTextArea jTextArea1;    
+    private JButton jButton1;        
 
     private AbbonamentiAttiviPresenter presenter;
 
     public AbbonamentiAttivi() {
         initComponents();
-        presenter = new AbbonamentiAttiviPresenter(this); // Collega il Presenter
+        presenter = new AbbonamentiAttiviPresenter(this); 
     }
 
     private void initComponents() {
@@ -66,7 +66,7 @@ public class AbbonamentiAttivi extends javax.swing.JPanel {
         );
     }
 
-    // Metodi di accesso ai dati
+   
 
     public String getID() {
         return jTextField1.getText();
@@ -76,12 +76,12 @@ public class AbbonamentiAttivi extends javax.swing.JPanel {
         jTextArea1.setText(text);
     }
 
-    // Metodo per gestire la visibilità dei messaggi di errore
+   
     public void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(this, message, "Errore", JOptionPane.ERROR_MESSAGE);
     }
 
-    // Metodo per gestire la visibilità dei messaggi di successo
+    
     public void showSuccessMessage(String message) {
         JOptionPane.showMessageDialog(this, message, "Successo", JOptionPane.INFORMATION_MESSAGE);
     }
