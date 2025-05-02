@@ -28,7 +28,7 @@ public class Iscritto {
     
     @Override
     public String toString(){
-        return "Nome:" + nome + "Cognome:" + cognome + "ID:" + id + "\n";
+        return "Nome: " + nome + " Cognome: " + cognome + " ID: " + id + "\n";
     }
     
     public String getNome() {
@@ -45,6 +45,7 @@ public class Iscritto {
     
     public void aggiungiAbbonamento(Abbonamento abbonamento){
         this.abbonamentiattivi.add(abbonamento);
+        CsvManager.getInstance().salvaAbbonamenti();
     }
     
     public boolean terminaAbbonamento(String tipo){
@@ -53,6 +54,7 @@ public class Iscritto {
                 abbonamentiattivi.remove(abbonamento);
                 storico.add(abbonamento);
                 abbonamento.setAttivo(false);
+                CsvManager.getInstance().salvaAbbonamenti();
                 return true;
             }
         }

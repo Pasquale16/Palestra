@@ -35,12 +35,10 @@ public class CsvManager {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] campi = line.split(",");
-                if (campi.length >= 3) {
-                    String nome = campi[0];
-                    String cognome = campi[1];
-                    String id = campi[2];
-                    lista.add(new Iscritto(nome, cognome, Integer.parseInt(id)));
-                }
+                String nome = campi[0];
+                String cognome = campi[1];
+                String id = campi[2];
+                lista.add(new Iscritto(nome, cognome, Integer.parseInt(id)));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,20 +51,18 @@ public class CsvManager {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] campi = line.split(",");
-                if (campi.length >= 4) {
-                    String id = campi[0];
-                    String oggetto = campi[1];
-                    String data_inizio = campi[2];
-                    String data_fine = campi[3];
-                    
-                    Iscritto iscritto = GestioneIscritti.getInstance().cerca(Integer.parseInt(id));
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    LocalDate inizio = LocalDate.parse(data_inizio, formatter);
-                    LocalDate fine = LocalDate.parse(data_fine, formatter);
-                    
-                    Abbonamento abbonamento = new Abbonamento(true, oggetto, inizio, fine);
-                    iscritto.aggiungiAbbonamento(abbonamento);
-                }
+                String id = campi[0];
+                String oggetto = campi[1];
+                String data_inizio = campi[2];
+                String data_fine = campi[3];
+
+                Iscritto iscritto = GestioneIscritti.getInstance().cerca(Integer.parseInt(id));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate inizio = LocalDate.parse(data_inizio, formatter);
+                LocalDate fine = LocalDate.parse(data_fine, formatter);
+
+                Abbonamento abbonamento = new Abbonamento(true, oggetto, inizio, fine);
+                iscritto.aggiungiAbbonamento(abbonamento);
             }
         } catch (IOException e) {
             e.printStackTrace();

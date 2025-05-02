@@ -15,8 +15,14 @@ public class GestioneIscritti {
         return instance;
     }
     
+    private GestioneIscritti(){
+        lista = CsvManager.getInstance().caricaIscritti();
+        CsvManager.getInstance().caricaAbbonamenti();
+    }
+    
     public void aggiungiIscritto(Iscritto iscritto){
         lista.add(iscritto);
+        CsvManager.getInstance().salvaIscritti(lista);
     }
     
     public Iscritto cerca(int id){
