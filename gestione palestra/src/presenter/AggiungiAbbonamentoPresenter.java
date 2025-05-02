@@ -1,6 +1,10 @@
 
 package presenter;
 
+import model.AbbonamentoAnnuale;
+import model.AbbonamentoMensile;
+import model.GestioneIscritti;
+import model.Iscritto;
 import view.AggiungiAbbonamento;
 
 
@@ -25,7 +29,7 @@ public class AggiungiAbbonamentoPresenter {
         }
 
         
-        boolean isAbbonamentoAggiunto = addAbbonamento(id, tipoAbbonamento, durata);
+        boolean isAbbonamentoAggiunto = addAbbonamento(Integer.parseInt(id), tipoAbbonamento, durata);
 
         
         if (isAbbonamentoAggiunto) {
@@ -36,9 +40,21 @@ public class AggiungiAbbonamentoPresenter {
     }
 
     
-    private boolean addAbbonamento(String id, String tipoAbbonamento, String durata) {
-        
-        return true;
+    private boolean addAbbonamento(int id, String tipoAbbonamento, String durata) {
+        Iscritto iscritto = GestioneIscritti.getInstance().cerca(id);
+        if(durata.equals("mensile")){
+            AbbonamentoMensile abbonamento = new AbbonamentoMensile(true, tipoAbbonamento);
+            iscritto.aggiungiAbbonamento(abbonamento);
+            return true;
+        }
+        else if(durata.equals("annuale")){
+            AbbonamentoAnnuale abbonamento = new AbbonamentoAnnuale(true, tipoAbbonamento);
+            iscritto.aggiungiAbbonamento(abbonamento);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 

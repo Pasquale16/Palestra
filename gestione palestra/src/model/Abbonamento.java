@@ -7,6 +7,10 @@ import java.time.temporal.ChronoUnit;
 public class Abbonamento {
     
     private boolean attivo;
+
+    public String getTipo() {
+        return tipo;
+    }
     private String tipo;
     private LocalDate inizio;
     private LocalDate fine;

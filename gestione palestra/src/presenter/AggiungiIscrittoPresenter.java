@@ -1,6 +1,9 @@
 
 package presenter;
 
+import java.util.Random;
+import model.GestioneIscritti;
+import model.Iscritto;
 import view.AggiungiIscritto;
 
 public class AggiungiIscrittoPresenter {
@@ -11,21 +14,17 @@ public class AggiungiIscrittoPresenter {
         this.view = view;
     }
 
-    // Metodo che viene chiamato quando l'utente preme il pulsante "Aggiungi"
     public void onAggiungiButtonClicked() {
         String nome = view.getNome();
         String cognome = view.getCognome();
 
-        // Validazione dei dati
         if (nome.isEmpty() || cognome.isEmpty()) {
             view.showErrorMessage("Nome e Cognome non possono essere vuoti!");
             return;
         }
 
-        // Simulazione dell'aggiunta dell'iscritto
         boolean isIscrittoAggiunto = addIscritto(nome, cognome);
 
-        // Aggiorna la vista in base al risultato
         if (isIscrittoAggiunto) {
             view.showSuccessMessage("Iscritto aggiunto con successo!");
         } else {
@@ -33,10 +32,11 @@ public class AggiungiIscrittoPresenter {
         }
     }
 
-    // Simula l'aggiunta dell'iscritto (potrebbe essere un salvataggio su database, ecc.)
     private boolean addIscritto(String nome, String cognome) {
-        // In un'applicazione reale, qui si troverebbe la logica per aggiungere l'iscritto a un database
-        // Per ora, simuliamo sempre un successo
+        Random rand = new Random();
+        int id = rand.nextInt(10000);
+        Iscritto iscritto = new Iscritto(nome, cognome, id);
+        GestioneIscritti.getInstance().aggiungiIscritto(iscritto);
         return true;
     }
 }

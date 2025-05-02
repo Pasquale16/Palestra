@@ -46,4 +46,16 @@ public class Iscritto {
     public void aggiungiAbbonamento(Abbonamento abbonamento){
         this.abbonamentiattivi.add(abbonamento);
     }
+    
+    public boolean terminaAbbonamento(String tipo){
+        for(Abbonamento abbonamento : abbonamentiattivi){
+            if(abbonamento.getTipo().equals(tipo)){
+                abbonamentiattivi.remove(abbonamento);
+                storico.add(abbonamento);
+                abbonamento.setAttivo(false);
+                return true;
+            }
+        }
+        return false;
+    }
 }
