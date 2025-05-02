@@ -38,6 +38,11 @@ public class Abbonamento {
     public void setAttivo(boolean attivo){
     this.attivo=attivo;
     }
+    
+    @Override
+    public String toString(){
+        return tipo + " " + inizio.toString() + " " + fine.toString();
+    }
 }
 
     

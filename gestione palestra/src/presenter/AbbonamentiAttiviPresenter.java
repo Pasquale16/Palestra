@@ -1,6 +1,9 @@
 
 package presenter;
 
+import model.Abbonamento;
+import model.Iscritto;
+import model.GestioneIscritti;
 import view.AbbonamentiAttivi;
 
 
@@ -24,20 +27,20 @@ public class AbbonamentiAttiviPresenter  {
         }
 
         
-        String abbonamenti = getAbbonamentiAttivi(id);
+        String abbonamenti = getAbbonamentiAttivi(Integer.parseInt(id));
 
         
         view.setAbbonamentiText(abbonamenti);
     }
 
     
-    private String getAbbonamentiAttivi(String id) {
-        
-        if ("123".equals(id)) {
-            return "Abbonamento 1: Tipo A, Durata 12 mesi\nAbbonamento 2: Tipo B, Durata 6 mesi";
-        } else {
-            return "Nessun abbonamento trovato per l'ID: " + id;
+    private String getAbbonamentiAttivi(int id) {
+        Iscritto iscritto = GestioneIscritti.getInstance().cerca(id);
+        String abbonamenti_attivi = "";
+        for(Abbonamento a : iscritto.getAbbonamentiattivi()){
+            abbonamenti_attivi += a.toString() + "\n";
         }
+        return abbonamenti_attivi;
     }
 }
 
