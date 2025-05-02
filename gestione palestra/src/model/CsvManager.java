@@ -35,10 +35,9 @@ public class CsvManager {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] campi = line.split(",");
-                String nome = campi[0];
-                String cognome = campi[1];
-                String id = campi[2];
-                lista.add(new Iscritto(nome, cognome, Integer.parseInt(id)));
+                if (campi.length >= 3) {
+                    lista.add(new Iscritto(campi[0], campi[1], Integer.parseInt(campi[2])));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,18 +50,14 @@ public class CsvManager {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] campi = line.split(",");
-                String id = campi[0];
-                String oggetto = campi[1];
-                String data_inizio = campi[2];
-                String data_fine = campi[3];
-
-                Iscritto iscritto = GestioneIscritti.getInstance().cerca(Integer.parseInt(id));
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate inizio = LocalDate.parse(data_inizio, formatter);
-                LocalDate fine = LocalDate.parse(data_fine, formatter);
-
-                Abbonamento abbonamento = new Abbonamento(true, oggetto, inizio, fine);
-                iscritto.aggiungiAbbonamento(abbonamento);
+                if (campi.length >= 4) {
+                    Iscritto iscritto = GestioneIscritti.getInstance().cerca(Integer.parseInt(campi[0]));
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate inizio = LocalDate.parse(campi[2], formatter);
+                    LocalDate fine = LocalDate.parse(campi[3], formatter);
+                    Abbonamento abbonamento = new Abbonamento(true, campi[1], inizio, fine);
+                    iscritto.aggiungiAbbonamento(abbonamento);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
